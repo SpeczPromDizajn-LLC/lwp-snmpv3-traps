@@ -58,6 +58,21 @@ index 1234567..890abcd 100644
        err = ERR_MEM;
 ```
 
+### Использование
+
+Модуль подключается вместо стандартного из поставки lwIP. Требует только объявления функции для передачи настроек SNMPv3 Trap:
+
+```c
+void snmpv3GetTrapAuth(snmpv3_auth_algo_t *auth, u8_t **auth_key, snmpv3_priv_algo_t *priv, u8_t **priv_key, uint8_t pUserIdx)
+{
+    *auth = SNMP_V3_AUTH_ALGO_MD5; // or SNMP_V3_AUTH_ALGO_SHA;
+    *priv = SNMP_V3_PRIV_ALGO_DES; // or SNMP_V3_PRIV_ALGO_AES;
+
+    *auth_key = user_table[0].auth_key;
+    *priv_key = user_table[0].priv_key;
+}
+```
+
 ---
 
 # Description in English
@@ -69,3 +84,18 @@ https://www.mail-archive.com/lwip-users@nongnu.org/msg20283.html
 
 But it fixed a lot of bugs, including the problem with adding an extra 0 to the OID.
 I wrote to the developers about this, but no one answered my letter. The full text of the letter is attached above.
+
+### Using
+
+The module is connected instead of the standard one from the lwIP stack. It only requires declaring a function to transfer SNMPv3 Trap settings:
+
+```c
+void snmpv3GetTrapAuth(snmpv3_auth_algo_t *auth, u8_t **auth_key, snmpv3_priv_algo_t *priv, u8_t **priv_key, uint8_t pUserIdx)
+{
+    *auth = SNMP_V3_AUTH_ALGO_MD5; // or SNMP_V3_AUTH_ALGO_SHA;
+    *priv = SNMP_V3_PRIV_ALGO_DES; // or SNMP_V3_PRIV_ALGO_AES;
+
+    *auth_key = user_table[0].auth_key;
+    *priv_key = user_table[0].priv_key;
+}
+```
