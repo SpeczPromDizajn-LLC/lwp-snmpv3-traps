@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/license/mit)
+
 # lwp-traps-v3
 
 Реализация SNMPv3 Trap на базе стека lwIP
